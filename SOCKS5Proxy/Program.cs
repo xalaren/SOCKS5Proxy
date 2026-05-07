@@ -19,3 +19,6 @@ Console.CancelKeyPress += (_, e) =>
 };
 
 server.Run(cts.Token);
+programLogger.LogInformation("Press any key to close console...");
+
+Console.ReadKey();
