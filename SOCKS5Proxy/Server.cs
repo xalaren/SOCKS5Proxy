@@ -18,7 +18,7 @@ namespace SOCKS5Proxy
             logger.LogInformation("Initializing server...");
             var options = new Socks5ProxyServerOptions
             {
-                ListenEndPoint = new IPEndPoint(IPAddress.Loopback, configuration.Port),
+                ListenEndPoint = new IPEndPoint(IPAddress.Parse(configuration.IP), configuration.Port),
                 Username = configuration.Username,
                 Password = configuration.Password
             };

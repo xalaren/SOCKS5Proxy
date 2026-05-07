@@ -5,6 +5,7 @@ namespace SOCKS5Proxy.Configurations
 {
     internal class ConfigurationFileOrDefaultFactory : ConfigurationFactory
     {
+        private const string LocalhostIP = "127.0.0.1";
         private const int Socks5ProxyDefaultPort = 1080;
         private ILoggerFactory loggerFactory;
 
@@ -15,7 +16,7 @@ namespace SOCKS5Proxy.Configurations
         public override Configuration Create()
         {
             var configurationReader = new ConfigurationReader(loggerFactory);
-            return configurationReader.Read() ?? new Configuration(Socks5ProxyDefaultPort);
+            return configurationReader.Read() ?? new Configuration(LocalhostIP, Socks5ProxyDefaultPort);
         }
     }
 }
