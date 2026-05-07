@@ -11,7 +11,7 @@ namespace SOCKS5Proxy
         private Socks5ProxyServer socks5ProxyServer = null!;
         private static Server? instance;
         private static object locker = new object();
-        protected Server(Configuration configuration, ILoggerFactory loggerFactory) 
+        protected Server(Configuration configuration, ILoggerFactory loggerFactory)
         {
             logger = loggerFactory.CreateLogger<Socks5ProxyServer>();
 
@@ -29,7 +29,7 @@ namespace SOCKS5Proxy
         {
             try
             {
-               if(socks5ProxyServer.IsStarted)
+                if (socks5ProxyServer.IsStarted)
                 {
                     throw new InvalidOperationException("Server is already running!");
                 }
@@ -37,12 +37,12 @@ namespace SOCKS5Proxy
                 socks5ProxyServer.Start();
                 logger.LogInformation($"Server started on {socks5ProxyServer.ListenerEndPoint}...");
 
-                while(!cancellationToken.IsCancellationRequested) { }
+                while (!cancellationToken.IsCancellationRequested) { }
 
                 socks5ProxyServer.Stop();
                 logger.LogInformation("Server stopped...");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError(ex.Message + "\n" + ex.StackTrace);
             }
@@ -50,9 +50,9 @@ namespace SOCKS5Proxy
 
         public static Server GetInstance(Configuration configuration, ILoggerFactory loggerFactory)
         {
-            if(instance == null)
+            if (instance == null)
             {
-                lock(locker)
+                lock (locker)
                 {
                     return new Server(configuration, loggerFactory);
                 }
