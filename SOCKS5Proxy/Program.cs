@@ -1,26 +1,21 @@
-﻿using System.Net;
-using Microsoft.Extensions.Logging;
-using VpnHood.Core.Proxies.Socks5ProxyServers;
+﻿using Microsoft.Extensions.Logging;
+using SOCKS5Proxy;
+using SOCKS5Proxy.Configurations;
 
-namespace SOCKS5Proxy
+ILoggerFactory loggerFactory = LoggerFactory.Create
+(
+    builder => builder.AddConsole()
+);
+var configuration = new ConfigurationFileOrDefaultFactory(loggerFactory).Create();
+using var server = Server.GetInstance(configuration, loggerFactory);
+
+var programLogger = loggerFactory.CreateLogger<Program>();
+programLogger.LogInformation("Press \"Ctrl + C\" to stop server");
+var cts = new CancellationTokenSource();
+Console.CancelKeyPress += (_, e) =>
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            ILoggerFactory loggerFactory = LoggerFactory.Create(b => b.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss "));
-            var configuration = new ConfigurationModel(2080);
-            var server = Server.GetInstance(configuration, loggerFactory);
+    e.Cancel = true;
+    cts.Cancel();
+};
 
-            var cts = new CancellationTokenSource();
-            Console.CancelKeyPress += (_, e) =>
-            {
-                e.Cancel = true;
-                cts.Cancel();
-            };
-
-            server.Run(cts.Token);
-            
-        }
-    }
-}
+server.Run(cts.Token);

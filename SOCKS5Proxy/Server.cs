@@ -1,16 +1,17 @@
 ﻿using System.Net;
 using Microsoft.Extensions.Logging;
 using VpnHood.Core.Proxies.Socks5ProxyServers;
+using SOCKS5Proxy.Configurations;
 
 namespace SOCKS5Proxy
 {
-    internal class Server
+    internal class Server : IDisposable
     {
         private readonly ILogger<Socks5ProxyServer> logger;
         private Socks5ProxyServer socks5ProxyServer = null!;
         private static Server? instance;
         private static object locker = new object();
-        protected Server(ConfigurationModel configuration, ILoggerFactory loggerFactory) 
+        protected Server(Configuration configuration, ILoggerFactory loggerFactory) 
         {
             logger = loggerFactory.CreateLogger<Socks5ProxyServer>();
 
@@ -34,7 +35,7 @@ namespace SOCKS5Proxy
                 }
 
                 socks5ProxyServer.Start();
-                logger.LogInformation("Server started...");
+                logger.LogInformation($"Server started on {socks5ProxyServer.ListenerEndPoint}...");
 
                 while(!cancellationToken.IsCancellationRequested) { }
 
@@ -47,7 +48,7 @@ namespace SOCKS5Proxy
             }
         }
 
-        public static Server GetInstance(ConfigurationModel configuration, ILoggerFactory loggerFactory)
+        public static Server GetInstance(Configuration configuration, ILoggerFactory loggerFactory)
         {
             if(instance == null)
             {
@@ -58,6 +59,12 @@ namespace SOCKS5Proxy
             }
 
             return instance;
+        }
+
+        public void Dispose()
+        {
+            socks5ProxyServer.Stop();
+            socks5ProxyServer.Dispose();
         }
     }
 }
