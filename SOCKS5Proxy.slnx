@@ -1,3 +1,4 @@
 <Solution>
-  <Project Path="SOCKS5Proxy/SOCKS5Proxy.csproj" />
+  <Project Path="SOCKS5Proxy.Server/SOCKS5Proxy.Server.csproj" Id="fa558fd0-2225-4a36-9fc5-515544982db3" />
+  <Project Path="SOCKS5Proxy/SOCKS5Proxy.Console.csproj" />
 </Solution>

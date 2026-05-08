@@ -1,4 +1,4 @@
-﻿namespace SOCKS5Proxy.Configurations.Abstractions
+﻿namespace SOCKS5Proxy.Server.Configurations.Abstractions
 {
     public abstract class ConfigurationFactory
     {

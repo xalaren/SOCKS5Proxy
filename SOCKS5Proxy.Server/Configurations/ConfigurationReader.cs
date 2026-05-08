@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace SOCKS5Proxy.Configurations
+namespace SOCKS5Proxy.Server.Configurations
 {
     public class ConfigurationReader
     {
