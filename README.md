@@ -1,8 +1,8 @@
-# SOCKSProxy
-SOCKS5Proxy is a mini portable console application to start your SOCKS5 proxy server. 
+# SOCKS5Proxy
+`SOCKS5Proxy` is a mini portable console application to start your SOCKS5 proxy server. 
 
 ## Note 
-Project used VpnHood.Core.Proxies library under the hood.
+Project using a VpnHood.Core.Proxies library under the hood.
 
 ## Requirements
 Installed .NET 10 Runtime.
