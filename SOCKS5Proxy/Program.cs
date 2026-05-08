@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
-using SOCKS5Proxy;
-using SOCKS5Proxy.Configurations;
+using SOCKS5Proxy.Server;
+using SOCKS5Proxy.Server.Configurations;
 
 ILoggerFactory loggerFactory = LoggerFactory.Create
 (
     builder => builder.AddConsole()
 );
 var configuration = new ConfigurationFileOrDefaultFactory(loggerFactory).Create();
-using var server = Server.GetInstance(configuration, loggerFactory);
+using var server = Runner.GetInstance(configuration, loggerFactory);
 
 var programLogger = loggerFactory.CreateLogger<Program>();
 programLogger.LogInformation("Press \"Ctrl + C\" to stop server");

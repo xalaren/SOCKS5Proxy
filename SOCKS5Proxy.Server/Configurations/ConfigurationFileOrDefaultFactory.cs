@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using SOCKS5Proxy.Configurations.Abstractions;
+using SOCKS5Proxy.Server.Configurations.Abstractions;
 
-namespace SOCKS5Proxy.Configurations
+namespace SOCKS5Proxy.Server.Configurations
 {
-    internal class ConfigurationFileOrDefaultFactory : ConfigurationFactory
+    public class ConfigurationFileOrDefaultFactory : ConfigurationFactory
     {
         private const string LocalhostIP = "127.0.0.1";
         private const int Socks5ProxyDefaultPort = 1080;

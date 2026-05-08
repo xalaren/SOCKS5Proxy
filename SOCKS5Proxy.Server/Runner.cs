@@ -1,17 +1,17 @@
 ﻿using System.Net;
 using Microsoft.Extensions.Logging;
 using VpnHood.Core.Proxies.Socks5ProxyServers;
-using SOCKS5Proxy.Configurations;
+using SOCKS5Proxy.Server.Configurations;
 
-namespace SOCKS5Proxy
+namespace SOCKS5Proxy.Server
 {
-    internal class Server : IDisposable
+    public class Runner : IDisposable
     {
         private readonly ILogger<Socks5ProxyServer> logger;
         private Socks5ProxyServer socks5ProxyServer = null!;
-        private static Server? instance;
+        private static Runner? instance;
         private static object locker = new object();
-        protected Server(Configuration configuration, ILoggerFactory loggerFactory)
+        protected Runner(Configuration configuration, ILoggerFactory loggerFactory)
         {
             logger = loggerFactory.CreateLogger<Socks5ProxyServer>();
 
@@ -48,13 +48,13 @@ namespace SOCKS5Proxy
             }
         }
 
-        public static Server GetInstance(Configuration configuration, ILoggerFactory loggerFactory)
+        public static Runner GetInstance(Configuration configuration, ILoggerFactory loggerFactory)
         {
             if (instance == null)
             {
                 lock (locker)
                 {
-                    return new Server(configuration, loggerFactory);
+                    return new Runner(configuration, loggerFactory);
                 }
             }
 
