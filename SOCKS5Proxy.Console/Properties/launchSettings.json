@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SOCKS5Proxy.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "-i ip port username"
+    }
+  }
+}

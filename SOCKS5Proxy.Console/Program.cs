@@ -7,6 +7,8 @@ ILoggerFactory loggerFactory = LoggerFactory.Create
     builder => builder.AddConsole()
 );
 var configuration = new ConfigurationFileOrDefaultFactory(loggerFactory).Create();
+
+
 using var server = Runner.GetInstance(configuration, loggerFactory);
 
 var programLogger = loggerFactory.CreateLogger<Program>();
