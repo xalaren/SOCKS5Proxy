@@ -18,11 +18,7 @@ namespace SOCKS5Proxy.Server.Configurations
         {
             try
             {
-                if(!File.Exists(FileName))
-                {
-                    logger.LogWarning("File \"ProxyConfig.json\" not found");
-                    return null;
-                }
+                if (!File.Exists(FileName)) return null;
 
                 using(var reader = new StreamReader(FileName, Encoding.UTF8))
                 {

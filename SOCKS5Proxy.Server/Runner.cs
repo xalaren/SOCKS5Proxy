@@ -35,9 +35,14 @@ namespace SOCKS5Proxy.Server
                 }
 
                 socks5ProxyServer.Start();
+                if(!socks5ProxyServer.IsStarted)
+                {
+                    logger.LogError($"Server not started!");
+                    return;
+                }
                 logger.LogInformation($"Server started on {socks5ProxyServer.ListenerEndPoint}...");
 
-                while (!cancellationToken.IsCancellationRequested) { }
+                cancellationToken.WaitHandle.WaitOne();
 
                 socks5ProxyServer.Stop();
                 logger.LogInformation("Server stopped...");
