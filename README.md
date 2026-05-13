@@ -13,9 +13,9 @@ Installed .NET 10 Runtime.
 
 **1. Run application with command line and arguments.**
 
-  For windows: `SOCKS5Proxy.exe /config ip="127.0.0.1" port=1080`
+  For windows: `SOCKS5Proxy.Console.exe /config ip="127.0.0.1" port=1080`
   
-  For Linux: `dotnet SOCKS5Proxy.dll /config ip="127.0.0.1" port=1080`
+  For Linux: `dotnet SOCKS5Proxy.Console.dll /config ip="127.0.0.1" port=1080`
   
   List of available arguments:
   * `ip` - What IP address will the proxy server be accessible at (by default is `localhost`);
@@ -43,9 +43,9 @@ Installed .NET 10 Runtime.
 
 **3. Get configuration parameters.**
 
-  For windows: `SOCKS5Proxy.exe /echo ip port`
+  For windows: `SOCKS5Proxy.Console.exe /echo ip port`
   
-  For Linux: `dotnet SOCKS5Proxy.dll /echo ip port`
+  For Linux: `dotnet SOCKS5Proxy.Console.dll /echo ip port`
 
   Result: 
   
